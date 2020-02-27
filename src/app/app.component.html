@@ -10,12 +10,31 @@
 </style>
 
 <div class="content" role="main">
-
   <h2>Water Bucket Puzzle</h2>
   <p>Can you make 4 gallons?</p>
 
-  <button mat-raised-button>Button</button>
-
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; flex-direction: column; padding: 1em;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <h2>{{ bucket5 }}</h2>
+      </div>
+      <div>
+        <button mat-raised-button (click)="fill5()">Fill 5</button>
+        <button mat-raised-button (click)="empty5()">Empty 5</button>
+        <button mat-raised-button (click)="pour5()">Pour 5</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; padding: 1em;">
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <h2>{{ bucket3 }}</h2>
+      </div>
+      <div>
+        <button mat-raised-button (click)="fill3()">Fill 3</button>
+        <button mat-raised-button (click)="empty3()">Empty 3</button>
+        <button mat-raised-button (click)="pour3()">Pour 3</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
