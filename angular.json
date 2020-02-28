@@ -123,6 +123,13 @@
               "devServerTarget": "water-bucket-puzzle-ng:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "https://github.com/HunterCarlson/water-bucket-puzzle-ng.git",
+            "baseHref": "https://huntercarlson.github.io/water-bucket-puzzle-ng/"
+          }
         }
       }
     }
