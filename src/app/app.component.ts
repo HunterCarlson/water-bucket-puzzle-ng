@@ -11,23 +11,30 @@ export class AppComponent {
   bucket3 = 0;
   bucket5 = 0;
 
+  moves = 0;
+
   public fill3() {
+    this.moves++;
     this.bucket3 = 3;
   }
 
   public fill5() {
+    this.moves++;
     this.bucket5 = 5;
   }
 
   public empty3() {
+    this.moves++;
     this.bucket3 = 0;
   }
 
   public empty5() {
+    this.moves++;
     this.bucket5 = 0;
   }
 
   public pour3() {
+    this.moves++;
     const emptySpace5 = 5 - this.bucket5;
     if (emptySpace5 === 0) {
       return;
@@ -45,6 +52,7 @@ export class AppComponent {
   }
 
   public pour5() {
+    this.moves++;
     const emptySpace3 = 3 - this.bucket3;
     if (emptySpace3 === 0) {
       return;
@@ -59,5 +67,11 @@ export class AppComponent {
       this.bucket5 = this.bucket5 - transfer;
       return;
     }
+  }
+
+  public reset() {
+    this.bucket3 = 0;
+    this.bucket5 = 0;
+    this.moves = 0;
   }
 }
