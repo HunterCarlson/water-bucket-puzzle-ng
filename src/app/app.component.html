@@ -3,27 +3,27 @@
   <p>Can you make 4 gallons?</p>
 
   <div class="flex-row">
-    <div class="bucket-panel">
+    <div class="bucket-panel flex-col-center">
       <div class="flex-col-center">
         <h2>{{ bucket5 }}</h2>
         <div class="bucket">
           <div class="water" [style.height.rem]="bucket5 * 2"></div>
         </div>
       </div>
-      <div class="button-panel">
+      <div *ngIf="!solved" class="button-panel">
         <button mat-raised-button (click)="fill5()">Fill 5</button>
         <button mat-raised-button (click)="empty5()">Empty 5</button>
         <button mat-raised-button (click)="pour5()">Pour 5</button>
       </div>
     </div>
-    <div class="bucket-panel">
+    <div class="bucket-panel flex-col-center">
       <div class="flex-col-center">
         <h2>{{ bucket3 }}</h2>
         <div class="bucket">
           <div class="water" [style.height.rem]="bucket3 * 2"></div>
         </div>
       </div>
-      <div class="button-panel">
+      <div *ngIf="!solved" class="button-panel">
         <button mat-raised-button (click)="fill3()">Fill 3</button>
         <button mat-raised-button (click)="empty3()">Empty 3</button>
         <button mat-raised-button (click)="pour3()">Pour 3</button>
@@ -31,14 +31,31 @@
     </div>
   </div>
 
-  <div class="flex-col-center">
+  <div *ngIf="solved" class="solved-overlay">
+    <h1>4</h1>
+  </div>
+
+  <div *ngIf="!solved" class="flex-col-center">
     <h2>Moves</h2>
-    <h2>{{moves}}</h2>
+    <h2>{{ moves }}</h2>
+  </div>
+  <div *ngIf="solved" class="flex-col-center">
+    <h1>Moves</h1>
+    <div class="final-score">
+      <h1>
+        {{ moves }}
+      </h1>
+    </div>
   </div>
 
   <div class="flex-col-center">
     <button mat-raised-button (click)="reset()">Reset</button>
   </div>
+
+  <!-- for debug -->
+  <!-- <div>
+    <button (click)="solved = !solved">Toggle Solve</button>
+  </div> -->
 
 </div>
 

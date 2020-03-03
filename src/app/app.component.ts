@@ -13,31 +13,31 @@ export class AppComponent {
 
   moves = 0;
 
+  solved = false;
+
   public fill3() {
-    this.moves++;
     this.bucket3 = 3;
+    this.makeMove();
   }
 
   public fill5() {
-    this.moves++;
     this.bucket5 = 5;
+    this.makeMove();
   }
 
   public empty3() {
-    this.moves++;
     this.bucket3 = 0;
+    this.makeMove();
   }
 
   public empty5() {
-    this.moves++;
     this.bucket5 = 0;
+    this.makeMove();
   }
 
   public pour3() {
-    this.moves++;
     const emptySpace5 = 5 - this.bucket5;
     if (emptySpace5 === 0) {
-      return;
     } else {
       let transfer = 0;
       if (emptySpace5 < this.bucket3) {
@@ -47,15 +47,13 @@ export class AppComponent {
       }
       this.bucket5 = this.bucket5 + transfer;
       this.bucket3 = this.bucket3 - transfer;
-      return;
     }
+    this.makeMove();
   }
 
   public pour5() {
-    this.moves++;
     const emptySpace3 = 3 - this.bucket3;
     if (emptySpace3 === 0) {
-      return;
     } else {
       let transfer = 0;
       if (emptySpace3 < this.bucket5) {
@@ -65,13 +63,27 @@ export class AppComponent {
       }
       this.bucket3 = this.bucket3 + transfer;
       this.bucket5 = this.bucket5 - transfer;
-      return;
     }
+    this.makeMove();
+  }
+
+  public makeMove() {
+    this.moves++;
+    this.checkSolved();
   }
 
   public reset() {
+    this.solved = false;
     this.bucket3 = 0;
     this.bucket5 = 0;
     this.moves = 0;
+  }
+
+  public checkSolved() {
+    if (this.bucket5 === 4) {
+      this.solved = true;
+    } else {
+      this.solved = false;
+    }
   }
 }

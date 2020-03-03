@@ -12,16 +12,15 @@
   flex-direction: row;
 }
 
-.bucket-panel {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-}
-
-.bucket-container {
+.flex-col-center {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.bucket-panel {
+  margin: 1rem;
+  min-width: 16rem;
 }
 
 .bucket {
@@ -41,8 +40,12 @@
   margin: 1rem;
 }
 
-.flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center
+.final-score {
+  font-size: 2rem;
+}
+
+.solved-overlay {
+  position: absolute;
+  padding-top: 10rem;
+  font-size: 2rem;
 }
