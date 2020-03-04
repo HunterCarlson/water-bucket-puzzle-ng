@@ -1,39 +1,70 @@
-.content {
+$bucket-width: 5rem;
+$bucket-border-width: 0.5rem;
+
+$rem-per-gal: 2rem;
+
+$bucket-panel-min-width: 16rem;
+$bucket-panel-margin: 1rem;
+
+@mixin flex-col-center {
   display: flex;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  max-width: 960px;
   flex-direction: column;
   align-items: center;
 }
 
-.flex-row {
+.content {
+  @include flex-col-center();
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 960px;
+}
+
+.puzzle-container {
   display: flex;
   flex-direction: row;
 }
 
 .flex-col-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-col-center();
 }
 
 .bucket-panel {
-  margin: 1rem;
-  min-width: 16rem;
+  min-width: $bucket-panel-min-width;
+  margin: $bucket-panel-margin;
 }
 
-.bucket {
-  height: 10rem;
+.bucket-container {
+  height: 5 * $rem-per-gal + 2 * $bucket-border-width;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
 }
 
+.bucket {
+  width: $bucket-width;
+  border-style: solid;
+  border-top-style: none;
+  border-width: $bucket-border-width;
+  z-index: 20;
+}
+
+.bucket-3 {
+  height: 3 * $rem-per-gal;
+}
+
+.bucket-5 {
+  height: 5 * $rem-per-gal;
+}
+
 .water {
-  width: 5rem;
+  position: absolute;
+  width: $bucket-width;
+  padding-left: $bucket-border-width;
+  padding-right: $bucket-border-width;
+  padding-bottom: $bucket-border-width;
   background-color: blue;
   transition: height 1s ease;
+  z-index: 10;
 }
 
 .button-panel {
@@ -48,4 +79,15 @@
   position: absolute;
   padding-top: 10rem;
   font-size: 2rem;
+}
+
+@media (max-width: ($bucket-panel-min-width + 2 * $bucket-panel-margin) * 2) {
+  .puzzle-container {
+    @include flex-col-center();
+  }
+
+  .solved-overlay {
+    position: unset;
+    padding-top: unset;
+  }
 }

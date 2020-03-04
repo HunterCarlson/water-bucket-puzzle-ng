@@ -2,11 +2,12 @@
   <h2>Water Bucket Puzzle</h2>
   <p>Can you make 4 gallons?</p>
 
-  <div class="flex-row">
+  <div class="puzzle-container">
     <div class="bucket-panel flex-col-center">
       <div class="flex-col-center">
         <h2>{{ bucket5 }}</h2>
-        <div class="bucket">
+        <div class="bucket-container">
+          <div class="bucket bucket-5"></div>
           <div class="water" [style.height.rem]="bucket5 * 2"></div>
         </div>
       </div>
@@ -19,7 +20,8 @@
     <div class="bucket-panel flex-col-center">
       <div class="flex-col-center">
         <h2>{{ bucket3 }}</h2>
-        <div class="bucket">
+        <div class="bucket-container">
+          <div class="bucket bucket-3"></div>
           <div class="water" [style.height.rem]="bucket3 * 2"></div>
         </div>
       </div>
@@ -32,7 +34,7 @@
   </div>
 
   <div *ngIf="solved" class="solved-overlay">
-    <h1>4</h1>
+    <h1>4!</h1>
   </div>
 
   <div *ngIf="!solved" class="flex-col-center">
