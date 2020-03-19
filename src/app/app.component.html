@@ -11,7 +11,7 @@
           <div class="water" [style.height.rem]="bucket5 * 2"></div>
         </div>
       </div>
-      <div *ngIf="!solved" class="button-panel">
+      <div *ngIf="!solved && !failed" class="button-panel">
         <button mat-raised-button (click)="fill5()">Fill 5</button>
         <button mat-raised-button (click)="empty5()">Empty 5</button>
         <button mat-raised-button (click)="pour5()">Pour 5</button>
@@ -25,7 +25,7 @@
           <div class="water" [style.height.rem]="bucket3 * 2"></div>
         </div>
       </div>
-      <div *ngIf="!solved" class="button-panel">
+      <div *ngIf="!solved && !failed" class="button-panel">
         <button mat-raised-button (click)="fill3()">Fill 3</button>
         <button mat-raised-button (click)="empty3()">Empty 3</button>
         <button mat-raised-button (click)="pour3()">Pour 3</button>
@@ -41,7 +41,7 @@
     {{timerDisplay}}
   </div>
 
-  <div class="flex-col-center">
+  <div *ngIf="solved || failed" class="flex-col-center">
     <button mat-raised-button (click)="reset()">Reset</button>
   </div>
 

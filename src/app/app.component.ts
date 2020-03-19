@@ -13,6 +13,7 @@ export class AppComponent {
   bucket5 = 0;
 
   solved = false;
+  failed = false;
 
   secondsRemaining = 5 * 60;
   timerRunning = false;
@@ -82,6 +83,7 @@ export class AppComponent {
 
   public reset() {
     this.solved = false;
+    this.failed = false;
     this.bucket3 = 0;
     this.bucket5 = 0;
     this.stopTimer();
@@ -108,6 +110,10 @@ export class AppComponent {
         secondsStr = "0" + secondsStr;
       }
       this.timerDisplay = `${minutes}:${secondsStr}`;
+      if (this.secondsRemaining === 0) {
+        this.failed = true;
+        this.stopTimer();
+      }
     });
     this.timerRunning = true;
   }
