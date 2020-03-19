@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { timer, Subscription } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -12,6 +13,13 @@ export class AppComponent {
   bucket5 = 0;
 
   solved = false;
+
+  secondsRemaining = 5 * 60;
+  timerRunning = false;
+  timerDisplay = "5:00";
+
+  tickSource = timer(1000, 1000);
+  tickSubscription: Subscription;
 
   public fill3() {
     this.bucket3 = 3;
@@ -66,6 +74,9 @@ export class AppComponent {
   }
 
   public makeMove() {
+    if (!this.timerRunning) {
+      this.startTimer();
+    }
     this.checkSolved();
   }
 
@@ -73,13 +84,36 @@ export class AppComponent {
     this.solved = false;
     this.bucket3 = 0;
     this.bucket5 = 0;
+    this.stopTimer();
+    this.secondsRemaining = 5 * 60;
+    this.timerDisplay = "5:00";
   }
 
   public checkSolved() {
     if (this.bucket5 === 4) {
       this.solved = true;
+      this.stopTimer();
     } else {
       this.solved = false;
     }
+  }
+
+  startTimer() {
+    this.tickSubscription = this.tickSource.subscribe(() => {
+      this.secondsRemaining--;
+      const seconds = this.secondsRemaining % 60;
+      const minutes = Math.floor(this.secondsRemaining / 60);
+      let secondsStr = seconds.toString();
+      if (secondsStr.length < 2) {
+        secondsStr = "0" + secondsStr;
+      }
+      this.timerDisplay = `${minutes}:${secondsStr}`;
+    });
+    this.timerRunning = true;
+  }
+
+  stopTimer() {
+    this.tickSubscription.unsubscribe();
+    this.timerRunning = false;
   }
 }
