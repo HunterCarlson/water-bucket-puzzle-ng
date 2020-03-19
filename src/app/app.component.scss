@@ -75,6 +75,10 @@ $bucket-panel-margin: 1rem;
   @include flex-col-center();
   font-family: digital-7-mono, monospace;
   font-size: 8rem;
+  color: red;
+  text-shadow: 0 0 .5rem red;
+  background-color: black;
+  padding: 1rem 3rem;
 }
 
 .solved-overlay {
