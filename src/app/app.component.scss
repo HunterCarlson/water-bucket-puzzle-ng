@@ -71,8 +71,10 @@ $bucket-panel-margin: 1rem;
   margin: 1rem;
 }
 
-.final-score {
-  font-size: 2rem;
+.timer {
+  @include flex-col-center();
+  font-family: digital-7-mono, monospace;
+  font-size: 8rem;
 }
 
 .solved-overlay {

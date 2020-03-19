@@ -11,8 +11,6 @@ export class AppComponent {
   bucket3 = 0;
   bucket5 = 0;
 
-  moves = 0;
-
   solved = false;
 
   public fill3() {
@@ -68,7 +66,6 @@ export class AppComponent {
   }
 
   public makeMove() {
-    this.moves++;
     this.checkSolved();
   }
 
@@ -76,7 +73,6 @@ export class AppComponent {
     this.solved = false;
     this.bucket3 = 0;
     this.bucket5 = 0;
-    this.moves = 0;
   }
 
   public checkSolved() {
