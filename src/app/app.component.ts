@@ -15,11 +15,11 @@ export class AppComponent {
   solved = false;
   failed = false;
 
-  secondsRemaining = 5 * 60;
+  msRemaining = 5 * 60 * 100;
   timerRunning = false;
-  timerDisplay = "5:00";
+  timerDisplay = "5:00:00";
 
-  tickSource = timer(1000, 1000);
+  tickSource = timer(10, 10);
   tickSubscription: Subscription;
 
   public fill3() {
@@ -87,8 +87,8 @@ export class AppComponent {
     this.bucket3 = 0;
     this.bucket5 = 0;
     this.stopTimer();
-    this.secondsRemaining = 5 * 60;
-    this.timerDisplay = "5:00";
+    this.msRemaining = 5 * 60 * 100;
+    this.timerDisplay = "5:00:00";
   }
 
   public checkSolved() {
@@ -102,15 +102,12 @@ export class AppComponent {
 
   startTimer() {
     this.tickSubscription = this.tickSource.subscribe(() => {
-      this.secondsRemaining--;
-      const seconds = this.secondsRemaining % 60;
-      const minutes = Math.floor(this.secondsRemaining / 60);
-      let secondsStr = seconds.toString();
-      if (secondsStr.length < 2) {
-        secondsStr = "0" + secondsStr;
-      }
-      this.timerDisplay = `${minutes}:${secondsStr}`;
-      if (this.secondsRemaining === 0) {
+      this.msRemaining--;
+      const ms = this.msRemaining % 100;
+      const seconds = Math.floor(this.msRemaining / 100) % 60;
+      const minutes = Math.floor(this.msRemaining / (60 * 100));
+      this.timerDisplay = `${minutes}:${this.leftPadTime(seconds)}:${this.leftPadTime(ms)}`;
+      if (this.msRemaining === 0) {
         this.failed = true;
         this.stopTimer();
       }
@@ -121,5 +118,13 @@ export class AppComponent {
   stopTimer() {
     this.tickSubscription.unsubscribe();
     this.timerRunning = false;
+  }
+
+  leftPadTime(num: number): string {
+    let timeStr = num.toString();
+    if (timeStr.length < 2) {
+      timeStr = "0" + timeStr;
+    }
+    return timeStr;
   }
 }
